@@ -52,6 +52,11 @@ namespace _3.Sem_OOP_1.Tests
         public void ValidateTest()
         {
             car.Validate();
+            Assert.ThrowsException<ArgumentNullException>(() => carWithNullModel.Validate());
+            Assert.ThrowsException<ArgumentException>(() => carWithEmptyModel.Validate());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithNegativPrice.Validate());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooShortLicense.Validate());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooLongLicense.Validate());
         }
     }
 }
