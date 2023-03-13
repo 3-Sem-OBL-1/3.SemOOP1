@@ -37,6 +37,11 @@
 
         public void ValidateLicensePlate()
         {
+            if (LicensePlate == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             if (LicensePlate!.Length < 2)
             {
                 throw new ArgumentOutOfRangeException();

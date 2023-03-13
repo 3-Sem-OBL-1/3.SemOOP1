@@ -15,6 +15,7 @@ namespace _3.Sem_OOP_1.Tests
         private readonly Car carWithNullModel = new Car() { Id = 0, Model = null, Price = 50000, LicensePlate = "AC34175" };
         private readonly Car carWithEmptyModel = new Car() { Id = 0, Model = "", Price = 50000, LicensePlate = "AC34175" };
         private readonly Car carWithNegativPrice = new Car() { Id = 0, Model = "Volvo", Price = -50000, LicensePlate = "AC34175" };
+        private readonly Car carWithNullLicense = new Car() { Id = 0, Model = "Volvo", Price = 50000, LicensePlate = null };
         private readonly Car carWithTooShortLicense = new Car() { Id = 0, Model = "Volvo", Price = 50000, LicensePlate = "A" };
         private readonly Car carWithTooLongLicense = new Car() { Id = 0, Model = "Volvo", Price = 50000, LicensePlate = "AC341754" };
 
@@ -37,6 +38,7 @@ namespace _3.Sem_OOP_1.Tests
         public void ValidateLicensePlateTest()
         {
             car.ValidateLicensePlate();
+            Assert.ThrowsException<ArgumentNullException>(() => carWithNullLicense.ValidateLicensePlate());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooShortLicense.ValidateLicensePlate());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooLongLicense.ValidateLicensePlate());
         }
@@ -55,6 +57,7 @@ namespace _3.Sem_OOP_1.Tests
             Assert.ThrowsException<ArgumentNullException>(() => carWithNullModel.Validate());
             Assert.ThrowsException<ArgumentException>(() => carWithEmptyModel.Validate());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithNegativPrice.Validate());
+            Assert.ThrowsException<ArgumentNullException>(() => carWithNullLicense.Validate());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooShortLicense.Validate());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => carWithTooLongLicense.Validate());
         }
